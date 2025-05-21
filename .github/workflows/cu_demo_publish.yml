@@ -1,0 +1,16 @@
+name: cu_demo_publish
+
+on: [push]
+
+jobs:
+  publish-computer-use-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build the computer-use Docker image
+      run: |
+        echo $CR_PAT | docker login ghcr.io -u ferreat --password-stdin
+      env:
+        CR_PAT: ${{ secrets.CR_PAT }}
