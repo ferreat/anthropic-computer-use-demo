@@ -101,4 +101,6 @@ ENV DISPLAY_NUM=$DISPLAY_NUM
 ENV HEIGHT=$HEIGHT
 ENV WIDTH=$WIDTH
 
+LABEL org.opencontainers.image.source="https://github.com/ferreat/anthropic-computer-use-demo"
+
 ENTRYPOINT [ "./entrypoint.sh" ]
