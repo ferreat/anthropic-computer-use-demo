@@ -9,8 +9,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Build the computer-use Docker image
+    - name: Login to GitHub Container Registry
       run: |
         echo $CR_PAT | docker login ghcr.io -u ferreat --password-stdin
+        
       env:
         CR_PAT: ${{ secrets.CR_PAT }}
+
+    - name: Build the hello-world Docker image
+      run: |
+        docker build . --tag ghcr.io/ferreat/anthropic-computer-use:latest
+        docker run ghcr.io/ferreat/anthropic-computer-use:latest
+        docker push ghcr.io/ferreat/anthropic-computer-use:latest
